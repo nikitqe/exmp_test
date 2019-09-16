@@ -39,11 +39,9 @@ def first_more_detail(driver):
 @given('открыта страница листинга товаров <section>, города <city>')
 def step_impl(driver, section, city):
     driver.get(min_vata)
-    openNew = driver.find_element(By.XPATH, "//*[@itemprop='name' and text()='Минеральная вата']").get_attribute(
-        'innerHTML')
+    openNew = driver.find_element(By.XPATH, "//*[@itemprop='name' and text()='Минеральная вата']").get_attribute('innerHTML')
     assert openNew in section
-    openNewCity = driver.find_element(By.XPATH, "//span[@data-test-id='CityName' and text()='Москва']").get_attribute(
-        'innerHTML')
+    openNewCity = driver.find_element(By.XPATH, "//span[@data-test-id='CityName' and text()='Москва']").get_attribute('innerHTML')
     assert openNewCity in city
 
 
@@ -74,8 +72,7 @@ def lookCounterUp(driver):
 def changeCounter(driver):
     driver.find_element(By.XPATH, "//button[@data-test-id='CounterUp']").click()  # добавить по кнопке + счетчитку
     driver.find_element(By.XPATH, "//button[@data-test-id='CounterUp']").click()
-    driver.find_element(By.XPATH,
-                        "//div[button[@data-test-id='CounterUp']]/button[1]").click()  # убрать товар по кнопке - счетчику
+    driver.find_element(By.XPATH, "//div[button[@data-test-id='CounterUp']]/button[1]").click()  # убрать товар по кнопке - счетчику
     changeNum = driver.find_element(By.XPATH, "//label[span[input[@type='number']]]")  # ввод числа с клавиатуры
     changeNum.click()
     changeNum.send_keys(Keys.CONTROL + "a")
