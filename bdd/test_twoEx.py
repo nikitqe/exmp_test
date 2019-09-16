@@ -71,8 +71,8 @@ def rename_button(driver, count, measure):
 
 @then('я вижу счетчик')
 def lookCounterUp(driver):
-    driver.find_element(By.XPATH, "//*[@class='tdc1jhj p6dine5']")
-
+    driver.find_element(By.XPATH, "//*[@type='number']")
+#"//*[@class='t9v9037 s1lau469']")
 
 @then('я могу изменить количество')
 def changeCounter(driver):
@@ -80,7 +80,7 @@ def changeCounter(driver):
     driver.find_element(By.XPATH, "//button[@data-test-id='CounterUp']").click()
     driver.find_element(By.XPATH,
                         "//div[button[@data-test-id='CounterUp']]/button[1]").click()  # убрать товар по кнопке - счетчику
-    changeNum = driver.find_element(By.XPATH, "//*[@class='t9v9037 s1lau469']")  # ввод числа с клавиатуры
+    changeNum = driver.find_element(By.XPATH, "//label[span[input[@type='number']]]")  # ввод числа с клавиатуры
     changeNum.click()
     changeNum.send_keys(Keys.CONTROL + "a")
     changeNum.send_keys("9")
@@ -119,8 +119,8 @@ def naviBlok_MoreDetail(driver):
 @then('я могу переходить по ссылкам страниц')
 def change_page(driver):
     driver.find_element(By.XPATH, "//*[@href='/moscow/catalog/stroitelnye-materialy-5521/']")
-    link = driver.find_element_by_link_text('2')
-    link.click()
+    next_page = driver.find_element_by_link_text('2')
+    next_page.click()
 
 
 @then('я вижу 60 товаров')
@@ -131,8 +131,8 @@ def look_60_product(driver):
 
 @then('кликаю на Показать еще')
 def clickMore_button(driver):
-    link = driver.find_element(By.XPATH, "//*[@data-test-id='LoadMoreButton']")
-    link.click()
+    moreButton = driver.find_element(By.XPATH, "//*[@data-test-id='LoadMoreButton']")
+    moreButton.click()
     time.sleep(1)
 
 
@@ -144,5 +144,8 @@ def look_120_product(driver):
 
 @then('кликаю по ссылке страницы <page>')
 def clickOn_page(driver, page):
-    link = driver.find_element_by_link_text(page)
-    link.click()
+    link_page = driver.find_element_by_link_text(page)
+    link_page.click()
+    time.sleep(1)
+    url = driver.current_url
+    print(url)
