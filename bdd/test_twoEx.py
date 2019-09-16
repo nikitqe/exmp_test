@@ -13,12 +13,9 @@ min_vata = 'https://www.sdvor.com/moscow/catalog/mineralnaja-vata-5532/'
 @given('открыта листинга товаров <section>, города <city>')
 def open_list_city(driver, section, city):
     driver.get(stroi_mat)
-    openSection = driver.find_element(By.XPATH,
-                                      "//*[@itemprop='name' and text()='Строительные материалы']").get_attribute(
-        'innerHTML')
+    openSection = driver.find_element(By.XPATH,"//*[@itemprop='name' and text()='Строительные материалы']").get_attribute('innerHTML')
     assert openSection in section
-    openCity = driver.find_element(By.XPATH, "//span[@data-test-id='CityName' and text()='Москва']").get_attribute(
-        'innerHTML')
+    openCity = driver.find_element(By.XPATH, "//span[@data-test-id='CityName' and text()='Москва']").get_attribute('innerHTML')
     assert openCity in city
 
 
@@ -86,27 +83,15 @@ def changeCounter(driver):
     changeNum.send_keys("9")
 
 
-# countMy = driver.find_elements(By.XPATH, "//*[@data-test-id='Product']")
-# print (len(countMy))
-# link = driver.find_element(By.XPATH, "//*[@data-test-id='LoadMoreButton']")
-# link.click()
-# time.sleep(1)
-# newCount = driver.find_elements(By.XPATH, "//*[@data-test-id='Product']")
-# print(len(newCount))
-
-
-# Scenario NAVI PAGE
+# Scenario Проверка постраничной навигации
 
 
 @given('открыта страница листинга товаров <section1>, города <city>')
 def firstpage(driver, section1, city):
     driver.get(stroi_mat)
-    openOldSection = driver.find_element(By.XPATH,
-                                         "//*[@itemprop='name' and text()='Строительные материалы']").get_attribute(
-        'innerHTML')
+    openOldSection = driver.find_element(By.XPATH,"//*[@itemprop='name' and text()='Строительные материалы']").get_attribute('innerHTML')
     assert openOldSection in section1
-    openOldCity = driver.find_element(By.XPATH, "//span[@data-test-id='CityName' and text()='Москва']").get_attribute(
-        'innerHTML')
+    openOldCity = driver.find_element(By.XPATH, "//span[@data-test-id='CityName' and text()='Москва']").get_attribute('innerHTML')
     assert openOldCity in city
 
 
