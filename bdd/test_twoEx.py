@@ -25,7 +25,7 @@ def open_list_city(driver, section, city):
 @when('в фильтре для <typeFilter> я выбираю <brand>')
 def check_filter(driver, typeFilter, brand):
     driver.find_element(By.XPATH, "//button[text()='Бренд']")
-    driver.find_element(By.XPATH, "(//span[@class='c151qo43'])[1]")
+    driver.find_element(By.XPATH, "(//*[@role='checkbox'])[1]")
 
 
 # "//*[@data-test-id='Filters']/div[2]/div/button")
