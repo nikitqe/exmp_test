@@ -73,11 +73,12 @@ def lookCounterUp(driver):
 def changeCounter(driver):
     driver.find_element(By.XPATH, "//button[@data-test-id='CounterUp']").click()  # добавить по кнопке + счетчитку
     driver.find_element(By.XPATH, "//button[@data-test-id='CounterUp']").click()
-    driver.find_element(By.XPATH, "//button[@class='pp82xq9 bbw87z']").click()  # убрать товар по кнопке - счетчику
+    driver.find_element(By.XPATH, "//div[button[@data-test-id='CounterUp']]/button[1]").click()  # убрать товар по кнопке - счетчику
     changeNum = driver.find_element(By.XPATH, "//*[@class='t9v9037 s1lau469']")  # ввод числа с клавиатуры
     changeNum.click()
     changeNum.send_keys(Keys.CONTROL + "a")
     changeNum.send_keys("9")
+
 
 # countMy = driver.find_elements(By.XPATH, "//*[@data-test-id='Product']")
 # print (len(countMy))
