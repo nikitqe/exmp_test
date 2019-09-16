@@ -13,9 +13,12 @@ min_vata = 'https://www.sdvor.com/moscow/catalog/mineralnaja-vata-5532/'
 @given('открыта листинга товаров <section>, города <city>')
 def open_list_city(driver, section, city):
     driver.get(stroi_mat)
-    openSection = driver.find_element(By.XPATH, "//*[@itemprop='name' and text()='Строительные материалы']").get_attribute('innerHTML')
+    openSection = driver.find_element(By.XPATH,
+                                      "//*[@itemprop='name' and text()='Строительные материалы']").get_attribute(
+        'innerHTML')
     assert openSection in section
-    openCity = driver.find_element(By.XPATH, "//span[@data-test-id='CityName' and text()='Москва']").get_attribute('innerHTML')
+    openCity = driver.find_element(By.XPATH, "//span[@data-test-id='CityName' and text()='Москва']").get_attribute(
+        'innerHTML')
     assert openCity in city
 
 
@@ -40,10 +43,12 @@ def first_more_detail(driver):
 @given('открыта страница листинга товаров <section>, города <city>')
 def step_impl(driver, section, city):
     driver.get(min_vata)
-    openSection = driver.find_element(By.XPATH, "//*[@itemprop='name' and text()='Минеральная вата']").get_attribute('innerHTML')
-    assert openSection in section
-    openCity = driver.find_element(By.XPATH, "//span[@data-test-id='CityName' and text()='Москва']").get_attribute('innerHTML')
-    assert openCity in city
+    openNew = driver.find_element(By.XPATH, "//*[@itemprop='name' and text()='Минеральная вата']").get_attribute(
+        'innerHTML')
+    assert openNew in section
+    openNewCity = driver.find_element(By.XPATH, "//span[@data-test-id='CityName' and text()='Москва']").get_attribute(
+        'innerHTML')
+    assert openNewCity in city
 
 
 @given('первый товар на странице')
@@ -73,7 +78,8 @@ def lookCounterUp(driver):
 def changeCounter(driver):
     driver.find_element(By.XPATH, "//button[@data-test-id='CounterUp']").click()  # добавить по кнопке + счетчитку
     driver.find_element(By.XPATH, "//button[@data-test-id='CounterUp']").click()
-    driver.find_element(By.XPATH, "//div[button[@data-test-id='CounterUp']]/button[1]").click()  # убрать товар по кнопке - счетчику
+    driver.find_element(By.XPATH,
+                        "//div[button[@data-test-id='CounterUp']]/button[1]").click()  # убрать товар по кнопке - счетчику
     changeNum = driver.find_element(By.XPATH, "//*[@class='t9v9037 s1lau469']")  # ввод числа с клавиатуры
     changeNum.click()
     changeNum.send_keys(Keys.CONTROL + "a")
@@ -87,3 +93,56 @@ def changeCounter(driver):
 # time.sleep(1)
 # newCount = driver.find_elements(By.XPATH, "//*[@data-test-id='Product']")
 # print(len(newCount))
+
+
+# Scenario NAVI PAGE
+
+
+@given('открыта страница листинга товаров <section1>, города <city>')
+def firstpage(driver, section1, city):
+    driver.get(stroi_mat)
+    openOldSection = driver.find_element(By.XPATH,
+                                         "//*[@itemprop='name' and text()='Строительные материалы']").get_attribute(
+        'innerHTML')
+    assert openOldSection in section1
+    openOldCity = driver.find_element(By.XPATH, "//span[@data-test-id='CityName' and text()='Москва']").get_attribute(
+        'innerHTML')
+    assert openOldCity in city
+
+
+@when('есть блок постраничной навигации и кнопка Показать еще')
+def naviBlok_MoreDetail(driver):
+    driver.find_element(By.XPATH, "//*[@data-test-id='Pagination']/ul[1]")
+    driver.find_element(By.XPATH, "//*[@data-test-id='LoadMoreButton']")
+
+
+@then('я могу переходить по ссылкам страниц')
+def change_page(driver):
+    driver.find_element(By.XPATH, "//*[@href='/moscow/catalog/stroitelnye-materialy-5521/']")
+    link = driver.find_element_by_link_text('2')
+    link.click()
+
+
+@then('я вижу 60 товаров')
+def look_60_product(driver):
+    countMy = driver.find_elements(By.XPATH, "//*[@data-test-id='Product']")
+    print(len(countMy))
+
+
+@then('кликаю на Показать еще')
+def clickMore_button(driver):
+    link = driver.find_element(By.XPATH, "//*[@data-test-id='LoadMoreButton']")
+    link.click()
+    time.sleep(1)
+
+
+@then('я вижу 120 товара')
+def look_120_product(driver):
+    newCount = driver.find_elements(By.XPATH, "//*[@data-test-id='Product']")
+    print(len(newCount))
+
+
+@then('кликаю по ссылке страницы <page>')
+def clickOn_page(driver, page):
+    link = driver.find_element_by_link_text(page)
+    link.click()

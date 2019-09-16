@@ -17,3 +17,10 @@ def test_check_tovar():
 def test_add_tovar():
     pass
 
+
+@scenario('twoEx.feature',
+          'Проверка постраничной навигации',
+          example_converters=dict(city=str, section1=str, page=str)
+          )
+def test_navi_page():
+    pass
