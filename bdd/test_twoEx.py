@@ -24,7 +24,6 @@ def check_filter(driver, typeFilter, brand):
     driver.find_element(By.XPATH, "//button[text()='Бренд']")
     driver.find_element(By.XPATH, "(//*[@role='checkbox'])[1]")
 
-
 # "//*[@data-test-id='Filters']/div[2]/div/button")
 
 @then('первый товар имеет кнопку Подробнее')
@@ -69,7 +68,7 @@ def rename_button(driver, count, measure):
 @then('я вижу счетчик')
 def lookCounterUp(driver):
     driver.find_element(By.XPATH, "//*[@type='number']")
-#"//*[@class='t9v9037 s1lau469']")
+
 
 @then('я могу изменить количество')
 def changeCounter(driver):
