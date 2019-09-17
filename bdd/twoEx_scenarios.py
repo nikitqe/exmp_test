@@ -24,3 +24,11 @@ def test_add_tovar():
           )
 def test_navi_page():
     pass
+
+
+@scenario('twoEx.feature',
+          'Проверка disabled фильтров',
+          example_converters=dict(city=str, section=str, typeFilter=str, brand=str, typeFilter2=str, typeFilter3=str)
+          )
+def test_dis_filter():
+    pass

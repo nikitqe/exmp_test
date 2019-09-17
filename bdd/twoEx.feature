@@ -39,3 +39,24 @@ Scenario Outline: Проверка постраничной навигации
     | city        | Москва                   |
     | section1    | Строительные материалы   |
     | page        | 2                        |
+
+
+Scenario Outline: Проверка disabled фильтров
+    Given открыта страница листинга товаров <section>, города <city>
+    When в фильтре для <typeFilter> я выбираю <brand>
+    Then в фильтре для <typeFilter2> проверяю, что есть [type=checkbox]:disabled
+    And в фильтре для <typeFilter> я снимаю выбор <brand>
+    And в фильтре для <typeFilter2> проверяю, что нет [type=checkbox]:disabled
+    And в фильтре для <typeFilter> я выбираю <brand>
+    And я выбираю случайно любую категорию в <typeFilter3>
+    And во всех фильтрах проверяю, что нет [type=checkbox]:disabled
+
+
+
+    Examples: Vertical
+    | city         | Москва                                                              |
+    | section      | Минеральная вата                                                    |
+    | typeFilter   | Бренд                                                               |
+    | brand        | Rockwool                                                            |
+    | typeFilter2  | Плотность                                                           |
+    | typeFilter3  | Категории                                                           |
