@@ -177,9 +177,9 @@ def again_unchecked_filter(driver, typeFilter, brand):
 
 @then('я выбираю случайно любую категорию в <typeFilter3>')
 def random_filter(driver, typeFilter3):
-    asd1 = driver.find_element_by_xpath("//*[@data-test-id='Filters']/div[1]")
+    move_again = driver.find_element_by_xpath("//*[@data-test-id='Filters']/div[1]")
     action = ActionChains(driver)
-    action.move_to_element(asd1).perform()
+    action.move_to_element(move_again).perform()
     driver.find_element_by_link_text('Экструдированный пенополистирол (XPS)').click()
     time.sleep(1)
     cur_url = driver.current_url
